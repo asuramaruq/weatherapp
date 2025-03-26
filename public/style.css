@@ -1,0 +1,64 @@
+
+.weather-info {
+    font-size: 1.5rem;
+    font-weight: normal;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+#map {
+    height: 400px;
+    width: 100%;
+}
+body {
+    background: url('/bg.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: darken;
+}
+.container {
+    max-width: 600px;
+}
+.loading {
+    display: none;
+}
+.header {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 20px;
+    color: #333;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 20px;
+    color: #333;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+}
+
+#weatherOutput, #map {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 20px;
+    color: #333;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    height: 560px;
+}
+
+#weatherOutput {
+    overflow-y: auto;
+    height: auto;
+    max-height: 560px;
+}

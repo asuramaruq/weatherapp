@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hahaWeather</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="icon" href="/icon.png?v=2">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="/icon.png" alt="" width="28" height="28" class="d-inline-block align-top">
+            hahaWeather
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#" onclick="toggleForm('weather')">Main</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="toggleForm('history'); location.reload();">History</a>
+                </li>
+            </ul>
+        </div>
+        <div class="navbar-nav ml-auto">
+            <a class="nav-link" href="/logout">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container-fluid py-5 my-0 text-center" id="weather">
+        <h1 class="mb-5 text-white">phone weather widget still exists btw ^^</h1>
+        <div class="card mx-auto">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="cityInput">Enter City Name:</label>
+                    <input type="text" class="form-control" id="cityInput">
+                </div>
+                <button type="button" class="btn btn-primary btn-block" id="button1">Update</button>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div id="weatherOutput"></div>
+            </div>
+            <div class="col-md-6">
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid py-5 my-0 text-center" style="display:none;" id="history">
+        <h3 class="text-center mb-4">History</h3>
+        <div class="row">
+            <% for(let i = 0; i < history.length; i++) { %>
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= history[i].createdAt %></h5>
+                            <p class="card-text">City: <%= history[i].city %></p>
+                            <p class="card-text">Temperature: <%= history[i].temperature %></p>
+                            <p class="card-text">Description: <%= history[i].description %></p>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <footer class="footer mt-auto py-3 bg-dark text-white fixed-bottom text-center">
+        <div class="container">
+            <span>Imangeldin Olzhas SE-2201</span>
+        </div>
+    </footer>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= googleMapsApiKey %>"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script type="module" src="/main.js"></script>
+
+<script>
+    function toggleForm(formId) {
+        var weatherForm = document.getElementById('weather');
+        var historyForm = document.getElementById('history');
+
+        if (formId === 'weather') {
+            weatherForm.style.display = 'block';
+            historyForm.style.display = 'none';
+        } else {
+            weatherForm.style.display = 'none';
+            historyForm.style.display = 'block';
+        }
+
+        sessionStorage.setItem('currentForm', formId);
+    }
+
+    window.onload = function() {
+        var currentForm = sessionStorage.getItem('currentForm');
+        if (currentForm) {
+            toggleForm(currentForm);
+        }
+    }
+</script>
+
+</html>
